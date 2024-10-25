@@ -1,0 +1,72 @@
+ // YACC FILE- arith.y
+ %{
+ #include <stdio.h>
+ #include <stdlib.h>
+ void yyerror(const char *s);
+ int yylex(void);
+ %}
+ %token NUMBER
+ %token PLUS MINUS TIMES DIVIDE LPAREN
+ RPAREN
+ %left PLUS MINUS
+ %left TIMES DIVIDE
+ %right UMINUS
+ %%
+ input:
+ /* Empty */
+ | input line
+ ;
+ line:
+ expr '\n' { printf("Result = %d\n", $1); }
+ ;
+ expr:
+ NUMBER
+ | expr PLUS expr { $$ = $1 + $3; }
+ | expr MINUS expr { $$ = $1- $3; }
+ | expr TIMES expr { $$ = $1 * $3; }
+ | expr DIVIDE expr { $$ = $1 / $3; }
+ | MINUS expr %prec UMINUS { $$ =-$2; }
+ | LPAREN expr RPAREN { $$ = $2; }
+ ;
+ %%
+ int main(void) {
+ yyparse();
+ return 0;
+ }
+ void yyerror(const char *s) {
+ fprintf(stderr, "Error: %s\n", s);
+ }
+ %{
+ #include "y.tab.h"
+ #include <stdlib.h>
+ %}
+ %%
+ [0-9]+ { yylval = atoi(yytext); return NUMBER; }
+ "+"
+ { return PLUS; }
+ "-"
+ "*"
+ "/"
+ "("
+ ")"
+ { return MINUS; }
+ { return TIMES; }
+ { return DIVIDE; }
+ { return LPAREN; }
+ { return RPAREN; }
+ [ \t\n] { /* skip whitespace */ }
+ .
+ { /* ignore unrecognized characters */ }
+ %%
+ int yywrap(void) {
+ return 1;
+ }
+ // input.txt
+ 3+5*(2-8)
+ 10/2+3
+ yacc-d arith.y
+ lex lex.l
+ gcc-o arith y.tab.c lex.yy.c-lfl
+ ./arith
+ Result =-27
+ Result = 8
