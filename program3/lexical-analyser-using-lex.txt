@@ -1,0 +1,38 @@
+Algorithm for Lexical Analyzer Using Lex
+Define Tokens and Counters:
+
+Decide which tokens (e.g., keywords, operators, identifiers, numbers) need to be recognized by the lexical analyzer.
+Set up counters for lines, words, special characters, etc., if needed.
+Set Up Lex Definitions:
+
+Use the %{ %} block in Lex to include necessary libraries (like stdio.h) and define variables or counters.
+Define Token Matching Rules:
+
+Inside the Lex rule section, define patterns for each token:
+Newlines: \n for line counting.
+Words/Identifiers: [a-zA-Z]+ for alphabetic strings.
+Numbers: [0-9]+ for integers.
+Operators/Special Characters: Define each special character or operator (e.g., +, -, *, /, etc.).
+Whitespace: " " to count spaces.
+Quoted Strings: \"[^\"]*\" to match text within double quotes.
+Use { action } to specify what to do when a pattern is matched, like updating counters or printing matched tokens.
+Write Actions for Each Token:
+
+For each defined pattern, write actions to process and track the token, such as:
+Counting the token type.
+Printing the matched token if needed.
+Checking specific patterns within tokens (e.g., looking for a keyword in a string).
+Handle Unmatched Characters:
+
+Define a rule for unmatched characters, typically using . to match any single character not previously defined.
+Main Function:
+
+In main(), open the input file and pass it to Lex for processing.
+Call yylex() to start the lexical analysis.
+Summary (Optional):
+
+After lexical analysis, print the results such as total characters, words, lines, etc.
+Compile and Run:
+
+Use flex to generate the C code from the Lex file.
+Compile the generated C file and run the executable with an input file.

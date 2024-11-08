@@ -1,0 +1,3 @@
+Hello, this is a sample input file. It contains multiple lines and words.
+Let's see how the lexical analyzer works.
+"Here is a line with println in it." Another Line without the specific substring.
