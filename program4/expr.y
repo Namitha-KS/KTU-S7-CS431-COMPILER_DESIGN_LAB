@@ -1,55 +1,64 @@
 %{
-#include <stdio.h>
-#include <stdlib.h>
 
-int yylex(void);
-void yyerror(const char *s);
+    #include<stdio.h>
+
+    int valid=1;   
+
 %}
 
-%union {
-    int num;
-}
-
-%token <num> NUMBER
-%token <num> ID
-%left '+' '-'
-%left '*' '/'
-%right UMINUS
+%token num id op
 
 %%
-expr: expr '+' expr { $$ = $1 + $3; }
-    | expr '-' expr { $$ = $1 - $3; }
-    | expr '*' expr { $$ = $1 * $3; }
-    | expr '/' expr { 
-        if ($3 == 0) {
-            yyerror("Division by zero");
-            YYABORT;
-        } else {
-            $$ = $1 / $3; 
-        }
-      }
-    | '-' expr %prec UMINUS { $$ = -$2; }
-    | '(' expr ')' { $$ = $2; }
-    | NUMBER       { $$ = $1; }
-    | ID           { $$ = $1; }
-    ;
+
+start : id '=' s ';'
+
+s :     id x       
+
+      | num x       
+
+      | '-' num x   
+
+      | '(' s ')' x 
+
+      ;
+
+x :     op s        
+
+      | '-' s       
+
+      |             
+
+      ;
 
 %%
-int main()
+
+int yyerror()
+
 {
-    if (yyparse() == 0)
-    {
-        printf("Expression is valid\n");
-    }
-    else
-    {
-        printf("Expression is invalid\n");
-    }
+
+    valid=0;
+
+    printf("\nInvalid expression!\n");
+
     return 0;
+
 }
 
-void yyerror(const char *s)
+int main()
+
 {
-    printf("Error: %s\n", s);
+
+    printf("\nEnter the expression:\n");
+
+    yyparse();
+
+    if(valid)
+
+    {
+
+        printf("\nValid expression!\n");
+
+    }
+
 }
 
