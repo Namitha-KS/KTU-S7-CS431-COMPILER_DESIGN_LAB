@@ -322,6 +322,9 @@ void yyfree ( void *  );
 #define YY_AT_BOL() (YY_CURRENT_BUFFER_LVALUE->yy_at_bol)
 
 /* Begin user sect3 */
+
+#define yywrap() (/*CONSTCOND*/1)
+#define YY_SKIP_YYWRAP
 typedef flex_uint8_t YY_CHAR;
 
 FILE *yyin = NULL, *yyout = NULL;
@@ -362,26 +365,26 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[14] =
     {   0,
-        0,    0,    7,    4,    5,    3,    2,    1,    2,    2,
-        1,    2,    0
+        0,    0,    7,    5,    3,    4,    1,    2,    0,    1,
+        2,    1,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    2,
+        1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    3,    3,    1,    1,    4,    3,    5,    5,    5,
+        1,    1,    1,    1,    1,    4,    1,    5,    5,    5,
         5,    5,    5,    5,    5,    5,    5,    1,    1,    1,
         1,    1,    1,    1,    6,    6,    6,    6,    6,    6,
         6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
         6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
-        1,    1,    1,    1,    6,    1,    6,    6,    6,    6,
+        1,    1,    1,    1,    6,    1,    6,    7,    7,    7,
 
-        6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
-        6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
-        6,    6,    1,    1,    1,    1,    1,    1,    1,    1,
+        7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+        7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+        7,    7,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -398,33 +401,35 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[7] =
+static const YY_CHAR yy_meta[8] =
     {   0,
-        1,    1,    1,    1,    2,    3
+        1,    1,    1,    1,    2,    2,    2
     } ;
 
-static const flex_int16_t yy_base[16] =
+static const flex_int16_t yy_base[15] =
     {   0,
-        0,    0,   12,   13,   13,   13,    3,    0,    0,    0,
-        0,    0,   13,    7,    9
+        0,    0,   13,   14,   14,   14,    4,    0,    7,    0,
+        0,    6,   14,    8
     } ;
 
-static const flex_int16_t yy_def[16] =
+static const flex_int16_t yy_def[15] =
     {   0,
-       13,    1,   13,   13,   13,   13,   13,   14,   15,    7,
-       14,   15,    0,   13,   13
+       13,    1,   13,   13,   13,   13,   13,   14,   13,    7,
+       14,   13,    0,   13
     } ;
 
-static const flex_int16_t yy_nxt[20] =
+static const flex_int16_t yy_nxt[22] =
     {   0,
-        4,    5,    6,    4,    7,    8,    9,   10,   11,   11,
-       12,   13,    3,   13,   13,   13,   13,   13,   13
+        4,    5,    6,    4,    7,    8,    4,    9,   10,   11,
+       12,   12,   13,    3,   13,   13,   13,   13,   13,   13,
+       13
     } ;
 
-static const flex_int16_t yy_chk[20] =
+static const flex_int16_t yy_chk[22] =
     {   0,
-        1,    1,    1,    1,    1,    1,    7,    7,   14,   14,
-       15,    3,   13,   13,   13,   13,   13,   13,   13
+        1,    1,    1,    1,    1,    1,    1,    7,    7,   14,
+       12,    9,    3,   13,   13,   13,   13,   13,   13,   13,
+       13
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -441,13 +446,11 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "expr.l"
-#line 2 "expr.l"
-
-    #include "y.tab.h"
-
-#line 450 "lex.yy.c"
-#line 451 "lex.yy.c"
+#line 1 "valid_a.l"
+#line 3 "valid_a.l"
+        #include "valid_arith.tab.h"
+#line 453 "lex.yy.c"
+#line 454 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -664,10 +667,9 @@ YY_DECL
 		}
 
 	{
-#line 7 "expr.l"
+#line 5 "valid_a.l"
 
-
-#line 671 "lex.yy.c"
+#line 673 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -700,7 +702,7 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 13 );
+		while ( yy_base[yy_current_state] != 14 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -726,36 +728,36 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 9 "expr.l"
-return id;
+#line 6 "valid_a.l"
+{ return num;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 11 "expr.l"
-return num;
+#line 7 "valid_a.l"
+{return id;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 13 "expr.l"
-return op;
+#line 8 "valid_a.l"
+;
 	YY_BREAK
 case 4:
+/* rule 4 can match eol */
 YY_RULE_SETUP
-#line 15 "expr.l"
-return yytext[0];
+#line 9 "valid_a.l"
+{return NL;}
 	YY_BREAK
 case 5:
-/* rule 5 can match eol */
 YY_RULE_SETUP
-#line 17 "expr.l"
-return 0;
+#line 10 "valid_a.l"
+{return yytext[0];}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 19 "expr.l"
+#line 11 "valid_a.l"
 ECHO;
 	YY_BREAK
-#line 759 "lex.yy.c"
+#line 761 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1760,20 +1762,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 19 "expr.l"
+#line 11 "valid_a.l"
 
-
-int yywrap()
-
-{
-
-return 1;
-
-}
-
-// To compile this file, use the following command:
-// yacc -d exp.y
-// lex exp.l
-// gcc lex.yy.c y.tab.c -w
-// ./a.out
 

@@ -73,7 +73,7 @@
         int yyerror(char *);
         #include<stdio.h>
 
-#line 77 "y.tab.c"
+#line 77 "valid_arith.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -96,57 +96,7 @@
 #  endif
 # endif
 
-/* Use api.header.include to #include this header
-   instead of duplicating it here.  */
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
-/* Debug traces.  */
-#ifndef YYDEBUG
-# define YYDEBUG 0
-#endif
-#if YYDEBUG
-extern int yydebug;
-#endif
-
-/* Token kinds.  */
-#ifndef YYTOKENTYPE
-# define YYTOKENTYPE
-  enum yytokentype
-  {
-    YYEMPTY = -2,
-    YYEOF = 0,                     /* "end of file"  */
-    YYerror = 256,                 /* error  */
-    YYUNDEF = 257,                 /* "invalid token"  */
-    id = 258,                      /* id  */
-    num = 259,                     /* num  */
-    NL = 260                       /* NL  */
-  };
-  typedef enum yytokentype yytoken_kind_t;
-#endif
-/* Token kinds.  */
-#define YYEMPTY -2
-#define YYEOF 0
-#define YYerror 256
-#define YYUNDEF 257
-#define id 258
-#define num 259
-#define NL 260
-
-/* Value type.  */
-#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
-# define YYSTYPE_IS_TRIVIAL 1
-# define YYSTYPE_IS_DECLARED 1
-#endif
-
-
-extern YYSTYPE yylval;
-
-
-int yyparse (void);
-
-
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+#include "valid_arith.tab.h"
 /* Symbol kind.  */
 enum yysymbol_kind_t
 {
@@ -1118,53 +1068,53 @@ yyreduce:
   case 2: /* ln: e NL  */
 #line 10 "valid_arith.y"
           {printf("Expression Valid\n"); return 0;}
-#line 1122 "y.tab.c"
+#line 1072 "valid_arith.tab.c"
     break;
 
   case 3: /* e: e '+' e  */
 #line 11 "valid_arith.y"
            {}
-#line 1128 "y.tab.c"
+#line 1078 "valid_arith.tab.c"
     break;
 
   case 4: /* e: e '-' e  */
 #line 12 "valid_arith.y"
           {}
-#line 1134 "y.tab.c"
+#line 1084 "valid_arith.tab.c"
     break;
 
   case 5: /* e: e '*' e  */
 #line 13 "valid_arith.y"
           {}
-#line 1140 "y.tab.c"
+#line 1090 "valid_arith.tab.c"
     break;
 
   case 6: /* e: e '%' e  */
 #line 14 "valid_arith.y"
           {}
-#line 1146 "y.tab.c"
+#line 1096 "valid_arith.tab.c"
     break;
 
   case 7: /* e: '(' e ')'  */
 #line 15 "valid_arith.y"
             {}
-#line 1152 "y.tab.c"
+#line 1102 "valid_arith.tab.c"
     break;
 
   case 8: /* e: num  */
 #line 16 "valid_arith.y"
       {}
-#line 1158 "y.tab.c"
+#line 1108 "valid_arith.tab.c"
     break;
 
   case 9: /* e: id  */
 #line 17 "valid_arith.y"
      {}
-#line 1164 "y.tab.c"
+#line 1114 "valid_arith.tab.c"
     break;
 
 
-#line 1168 "y.tab.c"
+#line 1118 "valid_arith.tab.c"
 
       default: break;
     }
@@ -1366,7 +1316,6 @@ int main()
 }
 int yyerror(char *m)
 {
-        fprintf(stderr,"%s: Invalid Expression\n",m);
-        return 0;
+        printf("%s: Invalid Expression\n",m);
 
 }
